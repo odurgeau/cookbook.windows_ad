@@ -39,6 +39,7 @@ action :create do
     Chef::Log.info(print_msg("create #{new_resource.name}"))
     cmd << CmdHelper.cmd_options(new_resource.options)
 
+    Chef::Log.info("dsadd : #{cmd}")
     CmdHelper.shell_out(cmd, new_resource.cmd_user, new_resource.cmd_pass, new_resource.cmd_domain)
 
     new_resource.updated_by_last_action(true)
@@ -56,6 +57,8 @@ action :modify do
     cmd << CmdHelper.cmd_options(new_resource.options)
 
     Chef::Log.info(print_msg("modify #{new_resource.name}"))
+
+    Chef::Log.info("dsmod : #{cmd}")
     CmdHelper.shell_out(cmd, new_resource.cmd_user, new_resource.cmd_pass, new_resource.cmd_domain)
 
     new_resource.updated_by_last_action(true)
